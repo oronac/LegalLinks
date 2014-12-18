@@ -14,17 +14,26 @@
 		var coun = 0;
 
 		for(var i=0;i<input.length;i++) {
+			// shorten some lines
 			var ll = input[i]["latLngs"];
+
+			// prepare centering map on average of portal locations
 			for(var j=0; j<ll.length; j++) {
 				coun++;
 				lats+=ll[j].lat;
 				lons+=ll[j].lng;
 			}
+
+			// add link from portal 0 to portal 1
 			var link = ll[0].lat+","+ll[0].lng+","+ll[1].lat+","+ll[1].lng+"_";
+
+			// only add every link once
 			if(links.indexOf(link)<0) {
 				links.push(link);
 				url+=link;
 			}
+
+			// more than 2 portals in polygon -> field of 3 portals, add all links
 			if(ll.length>2) {
 				var link2= ll[1].lat+","+ll[1].lng+","+ll[2].lat+","+ll[2].lng+"_";
 				var link3= ll[0].lat+","+ll[0].lng+","+ll[2].lat+","+ll[2].lng+"_";
@@ -38,9 +47,10 @@
 				}
 			}
 		}
-		url = url.replace("__,__", lats/coun+","+lons/coun);
-		url = url.replace(",_","_",'gi');
-		url = url.slice(0,url.length-1);
+
+		url = url.replace("__,__", lats/coun+","+lons/coun); // center
+		url = url.replace(",_","_",'gi'); // cosmetics
+		url = url.slice(0,url.length-1);  // cosmetics
 
 		document.getElementById("textConverted").value = url;
 		document.getElementById("textURL").innerHTML = '<a href="'+url+'">Intel Map</a>'
