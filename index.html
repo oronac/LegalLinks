@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>I**C to stock intel field planning converter</title>
+	<script type="text/javascript">
+	function convert() {
+		var input = JSON.parse(document.getElementById("textOriginal").value);
+
+		var url="https://www.ingress.com/intel?ll=__,__&z=10&pls=";
+		var links = new Array();
+		var lats = 0;
+		var lons = 0;
+		var coun = 0;
+
+		for(var i=0;i<input.length;i++) {
+			var ll = input[i]["latLngs"];
+			for(var j=0; j<ll.length; j++) {
+				coun++;
+				lats+=ll[j].lat;
+				lons+=ll[j].lng;
+			}
+			var link = ll[0].lat+","+ll[0].lng+","+ll[1].lat+","+ll[1].lng+"_";
+			if(links.indexOf(link)<0) {
+				links.push(link);
+				url+=link;
+			}
+			if(ll.length>2) {
+				var link2= ll[1].lat+","+ll[1].lng+","+ll[2].lat+","+ll[2].lng+"_";
+				var link3= ll[0].lat+","+ll[0].lng+","+ll[2].lat+","+ll[2].lng+"_";
+				if(links.indexOf(link2)<0) {
+					links.push(link2);
+					url+=link2;
+				}
+				if(links.indexOf(link3)<0) {
+					links.push(link3);
+					url+=link3;
+				}
+			}
+		}
+		url = url.replace("__,__", lats/coun+","+lons/coun);
+		url = url.replace(",_","_",'gi');
+		url = url.slice(0,url.length-1);
+
+		document.getElementById("textConverted").value = url;
+		document.getElementById("textURL").innerHTML = '<a href="'+url+'">Intel Map</a>'
+	}
+	</script>
+</head>
+<body>
+	<div>Paste "illegal" code here:</div>
+	<textarea id="textOriginal" name="original" rows="20" cols="100">[{"type":"polygon","latLngs":[{"lat":…</textarea><br />
+	<button name="convert" onclick="convert();">convert</button><br />
+	<textarea id="textConverted" name="converted" rows="2" cols="100"></textarea><br />
+	<div id="textURL"></div>
+</body>
+</html>
