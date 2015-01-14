@@ -18,3 +18,5 @@ https://www.ingress.com/intel?ll=51.13333333333333,13.566666666666668&z=10&pls=5
 ```
 
 which you can then share with your friends – preferrably made more sharing friendly with the URL shortener of your choice.
+
+Known Limitation: As GET requests have a maximum length, only about 40 links can be displayed at once. More links will cause a server error.
