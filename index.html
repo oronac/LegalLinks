@@ -17,6 +17,9 @@
 			// shorten some lines
 			var ll = input[i]["latLngs"];
 
+			// ignore markers
+			if(input[i]["type"].indexOf("poly")<0) continue;
+
 			// prepare centering map on average of portal locations
 			for(var j=0; j<ll.length; j++) {
 				coun++;
