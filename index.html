@@ -58,7 +58,11 @@
 		url = url.slice(0,url.length-1);	// cosmetics
 
 		document.getElementById("textConverted").value = url;
-		document.getElementById("textURL").innerHTML = '<a href="'+url+'">Intel Map</a>'
+		var warning = "";
+		if(url.length>2000) {
+			warning = '<div class="warning"><b>Warning:</b> Generated Intel link might contain too many characters and might not be displayed correctly. Please use less links.</div>';
+		}
+		document.getElementById("textURL").innerHTML = '<a href="'+url+'">Intel Map</a>'+warning;
 	}
 	</script>
 </head>
