@@ -29,8 +29,13 @@
 	a {
 		color: #59fbea;
 	}
-	.warning b {
-		color: #d00;
+	.warning {
+		border: 1px solid #ebbc4a;
+		background-color: #222;
+		color: #ebbc4a;
+		padding: 0px 5px;
+		margin: 10px;
+		display: inline-block;
 	}
 	#footer {
 		margin-top: 20px;
@@ -94,7 +99,7 @@
 		document.getElementById("textConverted").value = url;
 		var warning = "";
 		if(url.length>2000) {
-			warning = '<div class="warning"><b>Warning:</b> Generated Intel link might contain too many characters and might not be displayed correctly. Please use less links.</div>';
+			warning = '<br /><div class="warning"><b>Warning:</b> Generated Intel link might contain too many characters and might not be displayed correctly. Please use fewer links.</div>';
 		}
 		document.getElementById("textURL").innerHTML = '<a href="'+url+'">Intel Map</a>'+warning;
 	}
