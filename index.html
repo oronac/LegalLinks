@@ -3,6 +3,40 @@
 <head>
 	<meta charset="utf-8">
 	<title>I**C to stock intel field planning converter</title>
+	<style type="text/css">
+	@import url(http://fonts.googleapis.com/css?family=Coda);
+	body {
+		font-family: Coda,Helvetica,Arial,sans-serif;
+		background-color: #0b0c0d;
+		color: #ddd;
+		text-align: center;
+	}
+	button {
+		border: 1px solid #59fbea;
+		background-color: #004f4a;
+		color: #59fbea;
+		padding: 1px 15px;
+		font-size: 15px;
+		font-family: Coda,Helvetica,Arial,sans-serif;
+	}
+	textarea {
+		background-color: #0b0c0d;
+		color: #ddd;
+		padding: 1px 5px;
+		margin: 10px;
+		border: 1px solid #59fbea;
+	}
+	a {
+		color: #59fbea;
+	}
+	.warning b {
+		color: #d00;
+	}
+	#footer {
+		margin-top: 20px;
+		border-top: 1px solid #59fbea;
+	}
+	</style>
 	<script type="text/javascript">
 	function convert() {
 		var input = JSON.parse(document.getElementById("textOriginal").value);
